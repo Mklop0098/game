@@ -14,11 +14,11 @@ export const Main = () => {
 
     const { currentUser } = useUser()
 
-    useEffect(() => {
-        if (localStorage.getItem("game-user") === null) {
-            navigate("/login");
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (localStorage.getItem("game-user") === null) {
+    //         navigate("/login");
+    //     }
+    // }, []);
 
     const handleSubmit = async () => {
         if (match.code) {
