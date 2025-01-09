@@ -1,4 +1,5 @@
 import {ReactNode} from 'react'
+import { Socket } from "socket.io-client"
 
 export type RegisterInputType = {
     phone: string
@@ -12,6 +13,10 @@ export type LoginInputType = {
 export type ToastType = {
     open: boolean,
     msg: string
+}
+
+export type SocketIoHookReturn = {
+    socket: Socket | undefined
 }
 
 export type MsgHookReturn = {

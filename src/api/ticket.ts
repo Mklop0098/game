@@ -9,10 +9,3 @@ export const updateTicket = async (code: number, id: number) => {
   });
   return res;
 };
-
-export const login = async (input: LoginInputType) => {
-    const res = await axios.post(loginRoute, {
-      phone: input.phone
-    });
-    return res;
-};

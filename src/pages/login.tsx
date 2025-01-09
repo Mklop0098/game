@@ -19,13 +19,12 @@ export default function Login() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const res = await login(input)
-        console.log(res);
-        const { data, statusCode, message } = res.data;
+        const { data, statusCode } = res.data;
         if (statusCode === 200) {
             localStorage.setItem("game-user", JSON.stringify(data));
             navigate("/");
         } else {
-            setToast({ open: true, msg: message });
+            setToast({ open: true, msg: 'User không tồn tại' });
         }
     };
 

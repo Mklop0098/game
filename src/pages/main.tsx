@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../components/Context/userContext";
 import { ToastType } from "../type";
 import { updateTicket } from "../api/ticket";
+import { useSocket } from "../components/Context/socketContext";
 
 export const Main = () => {
 
@@ -13,25 +14,37 @@ export const Main = () => {
     const match = useParams<{ code: string }>();
 
     const { currentUser } = useUser()
+    const { socket } = useSocket();
 
-    // useEffect(() => {
-    //     if (localStorage.getItem("game-user") === null) {
-    //         navigate("/login");
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (localStorage.getItem("game-user") === null) {
+            navigate("/login");
+        }
+    }, []);
 
     const handleSubmit = async () => {
+        // socket?.emit("send-msg");
         if (match.code) {
             const res = await updateTicket(Number(match.code), currentUser.id)
             console.log(res)
-            const { statusCode, message } = res.data;
+            const { statusCode } = res.data;
             if (statusCode === 200) {
                 navigate("/");
             } else {
                 setToast({ open: true, msg: "Vé đã được mua" });
             }
         }
+        socket?.emit("send-msg", { code: Number(match.code), seller_id: currentUser.id });
     };
+
+    useEffect(() => {
+        socket?.on(
+            "msg-receive",
+            () => {
+                console.log('nhan duoc roi')
+            }
+        );
+    }, []);
 
     return (
         <div className="flex justify-between items-center flex-col overflow-y-auto h-[100vh]">
