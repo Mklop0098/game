@@ -1,5 +1,5 @@
 import {ReactNode} from 'react'
-import { Socket } from "socket.io-client"
+// import { Socket } from "socket.io-client"
 
 export type RegisterInputType = {
     phone: string
@@ -16,7 +16,7 @@ export type ToastType = {
 }
 
 export type SocketIoHookReturn = {
-    socket: Socket | undefined
+    // socket: Socket | undefined
 }
 
 export type MsgHookReturn = {
