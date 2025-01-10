@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../components/Context/userContext";
 import { ToastType } from "../type";
 import { updateTicket } from "../api/ticket";
-import { useSocket } from "../components/Context/socketContext";
+// import { useSocket } from "../components/Context/socketContext";
 import { RiQrScan2Line } from "react-icons/ri";
 
 
@@ -16,7 +16,7 @@ export const Main = () => {
     const match = useParams<{ code: string }>();
 
     const { currentUser } = useUser()
-    const { socket } = useSocket();
+    // const { socket } = useSocket();
 
     const handleSubmit = async () => {
         // socket?.emit("send-msg");
@@ -24,7 +24,7 @@ export const Main = () => {
             const res = await updateTicket(Number(match.code), currentUser.id)
             const { statusCode } = res.data;
             if (statusCode === 200) {
-                socket?.emit("send-msg", { code: Number(match.code), seller_id: currentUser.id });
+                // socket?.emit("send-msg", { code: Number(match.code), seller_id: currentUser.id });
                 navigate("/");
             } else {
                 setToast({ open: true, msg: "Vé đã được mua" });

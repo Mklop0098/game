@@ -1,15 +1,13 @@
-import { Button, ButtonBase } from "@mui/material"
-import { useSocket } from "../components/Context/socketContext"
-import { IoQrCode } from "react-icons/io5";
-import { FaPlay } from "react-icons/fa";
+
+// import { useSocket } from "../components/Context/socketContext"
 
 
 export const StartButton = () => {
 
-    const { socket } = useSocket()
+    // const { socket } = useSocket()
 
     function handleClick() {
-        socket?.emit('start-slot')
+        // socket?.emit('start-slot')
     }
 
     return (
