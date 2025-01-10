@@ -4,6 +4,7 @@ import { RegisterInputType, ToastType } from "../type";
 import Snackbar from "@mui/material/Snackbar";
 import { useUser } from "../components/Context/userContext";
 import { register } from "../api/user";
+import bg from '../assets/B.png'
 
 export default function SignIn() {
     const [input, setInput] = useState<RegisterInputType>({} as RegisterInputType);
@@ -18,26 +19,25 @@ export default function SignIn() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const res = await register(input);
-        const { message, statusCode, data } = res.data;
-        if (statusCode === 200) {
-            localStorage.setItem("game-user", JSON.stringify(data));
-            navigate("/");
-        } else {
-            setToast({ open: true, msg: message });
+        if (input.name && input.phone) {
+            const res = await register(input);
+            const { message, statusCode, data } = res.data;
+            if (statusCode === 200) {
+                localStorage.setItem("game-user", JSON.stringify(data));
+                navigate("/");
+            } else {
+                setToast({ open: true, msg: message });
+            }
         }
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
-            <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md rounded-lg">
-                <div className="flex px-5 pt-8 flex-col items-start bg-white">
-                    <span className="text-2xl font-semibold">Đăng ký</span>
-                    <span className="text-sm pt-2">
-                        Đăng ký tài khoản mới
-                    </span>
-                </div>
-                <div className="bg-white w-full divide-y divide-gray-200">
+        <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12" style={{ background: `url(${bg})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+            <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-lg rounded-lg">
+                <div className="bg-white w-full rounded-md">
+                    <div className="flex px-5 pt-8 flex-col items-start bg-white rounded-md">
+                        <span className="text-2xl font-semibold">Tạo tài khoản bán vé</span>
+                    </div>
                     <form className="px-5 py-7" onSubmit={handleSubmit}>
                         <label className="font-semibold text-sm text-gray-600 pb-1 block">
                             Nhập số điện thoại
@@ -59,7 +59,7 @@ export default function SignIn() {
                             type="submit"
                             className="mt-2 transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
                         >
-                            <span className="inline-block mr-2">Đăng ký</span>
+                            <span className="inline-block mr-2">Bắt đầu</span>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -76,27 +76,6 @@ export default function SignIn() {
                             </svg>
                         </button>
                     </form>
-                    <div className="p-5">
-                        <Link to={"/login"}>
-                            <button className="w-full transition duration-200 p-3 cursor-pointer bg-gray-100 font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-200">
-                                <span className="inline-block mr-1">Đăng nhập</span>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    className="w-4 h-4 inline-block align-text-bottom	"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
-                                    />
-                                </svg>
-                            </button>
-                        </Link>
-                    </div>
                 </div>
                 <Snackbar
                     open={toast.open}

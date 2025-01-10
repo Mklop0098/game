@@ -9,3 +9,8 @@ export const updateTicket = async (code: number, id: number) => {
   });
   return res;
 };
+
+export const checkAvailableTicket = async (code: number) => {
+  const res = await axios.get(updateTicketRoute+`/${code}`);
+  return res;
+};

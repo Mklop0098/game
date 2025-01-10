@@ -1,6 +1,7 @@
 import { Html5QrcodeScanner } from 'html5-qrcode'
 import { useEffect, useState } from 'react'
 import { IoQrCode } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 
 export const Scan = () => {
@@ -26,14 +27,14 @@ export const Scan = () => {
         scanner.render(success, error)
     }, [scanResult])
     return (
-        <div className='flex flex-col items-center justify-center'>
-            <div id='reader' className='w-full h-full'></div>
-            <div className='flex flex-col items-center p-4 bg-red-500 w-full flex-1'>
+        <div className='flex flex-col items-center justify-center h-[100vh]'>
+            <div id='reader' className='w-full h-full flex-1'></div>
+            <Link to='/payment' className='flex flex-col items-center justify-center p-4 bg-[#cf1e1c] w-full h-full'>
                 <div className='w-[80px] h-[80px] bg-white mb-4 rounded-md'>
                     <IoQrCode className='w-full h-full' />
                 </div>
                 <p className='text-xl uppercase font-semibold text-white'>Mã thanh toán</p>
-            </div>
+            </Link>
         </div >
     )
 }

@@ -1,5 +1,8 @@
 import { Button, ButtonBase } from "@mui/material"
 import { useSocket } from "../components/Context/socketContext"
+import { IoQrCode } from "react-icons/io5";
+import { FaPlay } from "react-icons/fa";
+
 
 export const StartButton = () => {
 
@@ -10,7 +13,12 @@ export const StartButton = () => {
     }
 
     return (
-        // <ButtonBase >hello</ButtonBase>
-        <Button variant="contained" onClick={handleClick}>Contained</Button>
+        <div className='bg-[#cf1e1c] w-[100vw] flex justify-center items-center h-[100vh]'>
+            <div className='flex flex-col items-center px-12 cursor-pointer' onClick={handleClick}>
+                <div className='w-[120px] h-[120px] bg-white flex justify-center items-center m-4 rounded-md'>
+                    <p className='uppercase font-bold text-[#cf1e1c]'>Quay số</p>
+                </div>
+            </div>
+        </div>
     )
 }

@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import { publicRoutes } from "./components/router";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { Layout } from "./components/layout";
 export default function App() {
+
   return (
 
     <Router>
@@ -13,7 +16,9 @@ export default function App() {
                 key={index}
                 path={route.path}
                 element={
-                  <Page />
+                  <Layout>
+                    <Page />
+                  </Layout>
                 }
               />
             );

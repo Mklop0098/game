@@ -21,8 +21,6 @@ export const SocketIoContextProvider: React.FC<PropsWithChildren> = (props) => {
         console.log("Connected to server:", socket.id);
     });
 
-    socket.emit("send-msg", { message: "Hello, Server!" });
-
     socket.on("connect_error", (err) => {
         console.error("Connection Error:", err);
     });
